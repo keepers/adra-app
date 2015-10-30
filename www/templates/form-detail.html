@@ -1,0 +1,58 @@
+<!--
+  This template loads for the 'tab.friend-detail' state (app.js)
+  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
+  The FriendsCtrl pulls data from the Friends service (service.js)
+  The Friends service returns an array of friend data
+-->
+<ion-view view-title="{{form.name}}">
+  <ion-content class="">
+    
+    <div class="list">
+
+      <div class="item item-divider">
+        Beneficiario
+      </div>
+
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Nombre</span>
+        <input type="text" placeholder="Carlos">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Apellido</span>
+        <input type="text" placeholder="Perez">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">DNI</span>
+        <input type="number" placeholder="36478509">
+      </label>
+
+      <label class="item item-radio">
+        <input type="radio" name="group" checked="true">
+        <div class="item-content">
+          Hombre
+        </div>
+        <i class="radio-icon ion-checkmark"></i>
+      </label>
+      <label class="item item-radio">
+        <input type="radio" name="group">
+        <div class="item-content">
+          Mujer
+        </div>
+        <i class="radio-icon ion-checkmark"></i>
+      </label>
+
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Edad</span>
+        <input type="number" placeholder="28">
+      </label>
+
+      <div class="padding">
+        <button ng-click="send()" class="button icon-left ion-ios-cloud-upload-outline button-block button-positive">
+          Enviar
+        </button>
+      </div>
+
+    </div>
+
+  </ion-content>
+</ion-view>
