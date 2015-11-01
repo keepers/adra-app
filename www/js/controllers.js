@@ -1,6 +1,18 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope) {})
+.controller('SignInCtrl', function($scope, $state, Forms) {
+
+  $scope.start = function(data){
+    if(data && data.emergencyCode){
+      Forms.setEmergencyCode(data.emergencyCode);
+      $state.go('tab.forms');
+    }
+  };
+})
+
+.controller('DashCtrl', function($scope) {
+
+})
 
 .controller('FormsCtrl', function($scope, Forms) {
   // With the new view caching in Ionic, Controllers are only called

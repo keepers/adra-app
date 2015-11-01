@@ -1,7 +1,8 @@
 angular.module('starter.services', [])
 
 .factory('Forms', function() {
-  // Might use a resource here that returns a JSON array
+  
+  var emergencyCode = null;
 
   // Some fake testing data
   var forms = [{
@@ -17,6 +18,14 @@ angular.module('starter.services', [])
   }];
 
   return {
+
+    getEmergencyCode: function(){
+      return emergencyCode;
+    },
+    setEmergencyCode: function(code){
+      emergencyCode = code;
+    },
+
     all: function() {
       return forms;
     },
@@ -31,5 +40,6 @@ angular.module('starter.services', [])
       }
       return null;
     }
+    
   };
 });
