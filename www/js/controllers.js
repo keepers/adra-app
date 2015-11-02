@@ -3,6 +3,7 @@ angular.module('starter.controllers', [])
 .controller('SignInCtrl', function($scope, $state, Forms) {
 
   $scope.start = function(data){
+    $scope.data = {emergencyCode: '5636e2e3d587f3c81ea9875d'};
     if(data && data.emergencyCode){
       Forms.setEmergencyCode(data.emergencyCode);
       $state.go('tab.forms');

@@ -2,7 +2,8 @@ angular.module('starter.services', [])
 
 .factory('Api', function($http, Forms) {
 
-  var API_PATH      = 'http://localhost:9090';
+  // var API_PATH      = 'http://localhost:9090';
+  var API_PATH      = 'https://adra-api.herokuapp.com';
   var emergencyCode = Forms.getEmergencyCode();
   
   // @TODO: Check connection
