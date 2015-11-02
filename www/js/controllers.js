@@ -29,26 +29,37 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('FormDetailCtrl', function($scope, $state, $stateParams, $ionicLoading, $timeout, Forms) {
+.controller('FormDetailCtrl', function($scope, $state, $stateParams, $ionicLoading, $timeout, Forms, Api) {
 
   $scope.form = Forms.get($stateParams.formId);
+  $scope.beneficiary = {gender: 'M'};
 
-  $scope.show = function() {
+  var showLoading = function() {
     $ionicLoading.show({
       template: 'Subiendo información...'
     });
   };
 
-  $scope.hide = function(){
+  var hideLoading = function(){
     $ionicLoading.hide();
   };
 
-  $scope.send = function(){
-    $scope.show();
-    $timeout(function(){
-      $scope.hide();
+  $scope.send = function(beneficiary){
+
+    showLoading();
+
+    Api.postBeneficiary(beneficiary)
+    .then(function(data){
+      console.log(data);
+      hideLoading();
       $state.go('tab.forms');
-    }, 1500);
+    })
+    .catch(function(e){
+      console.log(e);
+      hideLoading();
+      $state.go('tab.forms');
+    });
+
   };
 
 })

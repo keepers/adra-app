@@ -1,18 +1,27 @@
 angular.module('starter.services', [])
 
+.factory('Api', function($http, Forms) {
+
+  var API_PATH      = 'http://localhost:9090';
+  var emergencyCode = Forms.getEmergencyCode();
+  
+  // @TODO: Check connection
+
+  return {
+    postBeneficiary: function(beneficiary){
+      beneficiary.emergencyCode = emergencyCode;
+      return $http.post(API_PATH + '/beneficiary', beneficiary);
+    }
+  };
+})
+
 .factory('Forms', function() {
   
   var emergencyCode = null;
 
-  // Some fake testing data
   var forms = [{
     id: 0,
-    name: 'Lista de beneficiarios',
-    lastText: 'Descripción',
-    icon: 'img/doc.png'
-  }, {
-    id: 1,
-    name: 'Encuesta',
+    name: 'Distribución',
     lastText: 'Descripción',
     icon: 'img/doc.png'
   }];
@@ -20,10 +29,10 @@ angular.module('starter.services', [])
   return {
 
     getEmergencyCode: function(){
-      return emergencyCode;
+      return emergencyCode || window.localStorage.emergencyCode;
     },
     setEmergencyCode: function(code){
-      emergencyCode = code;
+      window.localStorage.emergencyCode = code;
     },
 
     all: function() {
@@ -40,6 +49,6 @@ angular.module('starter.services', [])
       }
       return null;
     }
-    
+
   };
 });

@@ -10,44 +10,71 @@
     <div class="list">
 
       <div class="item item-divider">
-        Beneficiario
+        Beneficiario (Requeridos)
       </div>
 
       <label class="item item-input item-stacked-label">
         <span class="input-label">Nombre</span>
-        <input type="text" placeholder="Carlos">
+        <input type="text" ng-model="beneficiary.name.first" placeholder="Carlos" required>
       </label>
       <label class="item item-input item-stacked-label">
         <span class="input-label">Apellido</span>
-        <input type="text" placeholder="Perez">
+        <input type="text" ng-model="beneficiary.name.last" placeholder="Perez">
       </label>
       <label class="item item-input item-stacked-label">
         <span class="input-label">DNI</span>
-        <input type="number" placeholder="36478509">
+        <input type="number" ng-model="beneficiary.dni" placeholder="36478509">
       </label>
 
-      <label class="item item-radio">
-        <input type="radio" name="group" checked="true">
-        <div class="item-content">
-          Hombre
-        </div>
-        <i class="radio-icon ion-checkmark"></i>
-      </label>
-      <label class="item item-radio">
-        <input type="radio" name="group">
-        <div class="item-content">
-          Mujer
-        </div>
-        <i class="radio-icon ion-checkmark"></i>
-      </label>
+      <ion-radio ng-model="beneficiary.gender" ng-value="'M'">Hombre</ion-radio>
+      <ion-radio ng-model="beneficiary.gender" ng-value="'F'">Mujer</ion-radio>
 
       <label class="item item-input item-stacked-label">
         <span class="input-label">Edad</span>
-        <input type="number" placeholder="28">
+        <input type="number" min="0" ng-model="beneficiary.age" placeholder="28">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Número ticket</span>
+        <input type="number" min="0" ng-model="beneficiary.ticketNumber" placeholder="12345">
+      </label>
+
+      <div class="item item-divider">
+        Beneficiarios (Opcionales)
+      </div>
+
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Hombres</span>
+        <input type="number" min="0" ng-model="beneficiary.beneficiaries.male" placeholder="0">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Mujeres</span>
+        <input type="number" min="0" ng-model="beneficiary.beneficiaries.female" placeholder="0">
+      </label>
+      <span ng-if="beneficiary.beneficiaries.female > 0">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Madres embarazadas</span>
+          <input type="number" min="0" ng-model="beneficiary.beneficiaries.pregnant" placeholder="0">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Madres lactantes</span>
+          <input type="number" min="0" ng-model="beneficiary.beneficiaries.lactant" placeholder="0">
+        </label>
+      </span>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Discapacitados</span>
+        <input type="number" min="0" ng-model="beneficiary.beneficiaries.disable" placeholder="0">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Mayores a 60 años</span>
+        <input type="number" min="0" ng-model="beneficiary.beneficiaries.greaterThan60" placeholder="0">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Menores a 2 años</span>
+        <input type="number" min="0" ng-model="beneficiary.beneficiaries.lowerThan2" placeholder="0">
       </label>
 
       <div class="padding">
-        <button ng-click="send()" class="button icon-left ion-ios-cloud-upload-outline button-block button-positive">
+        <button ng-click="send(beneficiary)" class="button icon-left ion-ios-cloud-upload-outline button-block button-positive">
           Enviar
         </button>
       </div>
