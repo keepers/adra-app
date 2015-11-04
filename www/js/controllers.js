@@ -94,8 +94,19 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('AccountCtrl', function($scope) {
+.controller('AccountCtrl', function($scope, $ionicPopup, Loading, OfflineForms) {
   $scope.settings = {
     enableFriends: true
+  };
+  $scope.removeAll = function(){
+    var confirmPopup = $ionicPopup.confirm({
+      title: 'Confirmar',
+      template: 'Estas seguro que queres borrar todos los items locales?'
+    });
+    confirmPopup.then(function(res) {
+     if(res) {
+       OfflineForms.removeAll();
+     }
+    });
   };
 });

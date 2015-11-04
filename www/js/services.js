@@ -59,6 +59,10 @@ angular.module('starter.services', [])
       forms.splice(forms.indexOf(form), 1);
       window.localStorage.setItem("OfflineForms", JSON.stringify(forms));
     },
+    removeAll: function(){
+      forms.splice(0, forms.length);
+      window.localStorage.setItem("OfflineForms", JSON.stringify(forms));
+    }
   };
 })
 
