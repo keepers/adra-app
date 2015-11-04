@@ -24,7 +24,7 @@
         </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">DNI</span>
-          <input type="number" name="dni" ng-model="beneficiary.dni" placeholder="36478509" ng-required="true">
+          <input type="number" min="0" name="dni" ng-model="beneficiary.dni" placeholder="36478509" ng-required="true">
         </label>
 
         <ion-radio ng-model="beneficiary.gender" ng-value="'M'">Hombre</ion-radio>
