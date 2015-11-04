@@ -63,7 +63,6 @@ angular.module('starter.controllers', [])
       $timeout(function() {
         hideLoading();
       }, 1500);
-      // $state.go('tab.forms');
     });
 
   };
