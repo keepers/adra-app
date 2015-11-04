@@ -7,79 +7,77 @@
 <ion-view view-title="{{form.name}}">
   <ion-content class="">
     
-    <div class="list">
+    <form name="myForm" novalidate>
+      <div class="list">
 
-      <div class="item item-divider">
-        Beneficiario (Requeridos)
-      </div>
+        <div class="item item-divider">
+          Beneficiario (Requeridos)
+        </div>
 
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Nombre</span>
-        <input type="text" ng-model="beneficiary.name.first" placeholder="Carlos" required>
-      </label>
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Apellido</span>
-        <input type="text" ng-model="beneficiary.name.last" placeholder="Perez">
-      </label>
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">DNI</span>
-        <input type="number" ng-model="beneficiary.dni" placeholder="36478509">
-      </label>
-
-      <ion-radio ng-model="beneficiary.gender" ng-value="'M'">Hombre</ion-radio>
-      <ion-radio ng-model="beneficiary.gender" ng-value="'F'">Mujer</ion-radio>
-
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Edad</span>
-        <input type="number" min="0" ng-model="beneficiary.age" placeholder="28">
-      </label>
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Número ticket</span>
-        <input type="number" min="0" ng-model="beneficiary.ticketNumber" placeholder="12345">
-      </label>
-
-      <div class="item item-divider">
-        Beneficiarios (Opcionales)
-      </div>
-
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Hombres</span>
-        <input type="number" min="0" ng-model="beneficiary.beneficiaries.male" placeholder="0">
-      </label>
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Mujeres</span>
-        <input type="number" min="0" ng-model="beneficiary.beneficiaries.female" placeholder="0">
-      </label>
-      <span ng-if="beneficiary.beneficiaries.female > 0">
         <label class="item item-input item-stacked-label">
-          <span class="input-label">Madres embarazadas</span>
-          <input type="number" min="0" max="{{beneficiary.beneficiaries.female}}" ng-model="beneficiary.beneficiaries.pregnant" placeholder="0">
+          <span class="input-label">Nombre</span>
+          <input type="text" name="name" ng-model="beneficiary.name.first" placeholder="Carlos" ng-required="true">
         </label>
         <label class="item item-input item-stacked-label">
-          <span class="input-label">Madres lactantes</span>
-          <input type="number" min="0" max="{{beneficiary.beneficiaries.female}}" ng-model="beneficiary.beneficiaries.lactant" placeholder="0">
+          <span class="input-label">Apellido</span>
+          <input type="text" name="lastName" ng-model="beneficiary.name.last" placeholder="Perez" ng-required="true">
         </label>
-      </span>
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Discapacitados</span>
-        <input type="number" min="0" ng-model="beneficiary.beneficiaries.disable" placeholder="0">
-      </label>
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Mayores a 60 años</span>
-        <input type="number" min="0" ng-model="beneficiary.beneficiaries.greaterThan60" placeholder="0">
-      </label>
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Menores a 2 años</span>
-        <input type="number" min="0" ng-model="beneficiary.beneficiaries.lowerThan2" placeholder="0">
-      </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">DNI</span>
+          <input type="number" name="dni" ng-model="beneficiary.dni" placeholder="36478509" ng-required="true">
+        </label>
 
-      <div class="padding">
-        <button ng-click="send(beneficiary)" class="button icon-left ion-ios-cloud-upload-outline button-block button-positive">
-          Enviar
-        </button>
+        <ion-radio ng-model="beneficiary.gender" ng-value="'M'">Hombre</ion-radio>
+        <ion-radio ng-model="beneficiary.gender" ng-value="'F'">Mujer</ion-radio>
+
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Edad</span>
+          <input type="number" name="age" min="0" ng-model="beneficiary.age" placeholder="28" ng-required="true">
+        </label>
+
+        <div class="item item-divider">
+          Beneficiarios (Opcionales)
+        </div>
+
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Hombres</span>
+          <input type="number" min="0" ng-model="beneficiary.beneficiaries.male" placeholder="0">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Mujeres</span>
+          <input type="number" min="0" ng-model="beneficiary.beneficiaries.female" placeholder="0">
+        </label>
+        <span ng-if="beneficiary.beneficiaries.female > 0">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Madres embarazadas</span>
+            <input type="number" min="0" max="{{beneficiary.beneficiaries.female}}" ng-model="beneficiary.beneficiaries.pregnant" placeholder="0">
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Madres lactantes</span>
+            <input type="number" min="0" max="{{beneficiary.beneficiaries.female}}" ng-model="beneficiary.beneficiaries.lactant" placeholder="0">
+          </label>
+        </span>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Discapacitados</span>
+          <input type="number" min="0" ng-model="beneficiary.beneficiaries.disable" placeholder="0">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Mayores a 60 años</span>
+          <input type="number" min="0" ng-model="beneficiary.beneficiaries.greaterThan60" placeholder="0">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Menores a 2 años</span>
+          <input type="number" min="0" ng-model="beneficiary.beneficiaries.lowerThan2" placeholder="0">
+        </label>
+
+        <div class="padding">
+          <button ng-disabled="myForm.$invalid" type="button" ng-click="send(beneficiary)" class="button icon-left ion-ios-cloud-upload-outline button-block button-positive">
+            Enviar
+          </button>
+        </div>
+
       </div>
-
-    </div>
+    </form>
 
   </ion-content>
 </ion-view>
