@@ -19,14 +19,20 @@ angular.module('starter.controllers', [])
 
   $scope.offlineForms = OfflineForms.getAll();
 
-  var sendForm = function(form){
+  var sendForm = function(form, lastOne){
     Api.postBeneficiary(form)
     .then(function(data){
       console.log(data);
       OfflineForms.remove(form);
+      if(lastOne){
+        Loading.hide();
+      }
     })
     .catch(function(e){
       console.log(e);
+      if(lastOne){
+        Loading.hide();
+      }
     });
   };
 
@@ -34,10 +40,8 @@ angular.module('starter.controllers', [])
     Loading.show('Enviando todos');
     for (var i = $scope.offlineForms.length - 1; i >= 0; i--) {
       var form = $scope.offlineForms[i];
-      sendForm(form);
-      if(i === 0){
-        Loading.hide();
-      }
+      var lastOne = i === 0;
+      sendForm(form, lastOne);
     }
 
   };
