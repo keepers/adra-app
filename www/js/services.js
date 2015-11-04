@@ -1,10 +1,10 @@
 angular.module('starter.services', [])
 
-.factory('Api', function($http, Forms) {
+.factory('Api', function($http, Forms, EmergencyCode) {
 
   // var API_PATH      = 'http://localhost:9090';
   var API_PATH      = 'https://adra-api.herokuapp.com';
-  var emergencyCode = Forms.getEmergencyCode();
+  var emergencyCode = EmergencyCode.getEmergencyCode();
   
   // @TODO: Check connection
 
@@ -16,10 +16,22 @@ angular.module('starter.services', [])
   };
 })
 
-.factory('Forms', function() {
-  
+.factory('EmergencyCode', function() {
+
   var emergencyCode = null;
 
+  return {
+    getEmergencyCode: function(){
+      return emergencyCode || window.localStorage.emergencyCode;
+    },
+    setEmergencyCode: function(code){
+      window.localStorage.emergencyCode = code;
+    }
+  };
+})
+
+.factory('Forms', function() {
+  
   var forms = [{
     id: 0,
     name: 'Distribución',
@@ -28,13 +40,6 @@ angular.module('starter.services', [])
   }];
 
   return {
-
-    getEmergencyCode: function(){
-      return emergencyCode || window.localStorage.emergencyCode;
-    },
-    setEmergencyCode: function(code){
-      window.localStorage.emergencyCode = code;
-    },
 
     all: function() {
       return forms;
