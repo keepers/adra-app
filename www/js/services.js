@@ -30,6 +30,19 @@ angular.module('starter.services', [])
   };
 })
 
+.factory('Loading', function($ionicLoading) {
+  return {
+    show: function(text){
+      $ionicLoading.show({
+        template: text
+      });
+    },
+    hide: function(code){
+      $ionicLoading.hide();
+    }
+  };
+})
+
 .factory('OfflineForms', function() {
 
   var forms = JSON.parse(window.localStorage.getItem("OfflineForms")) || [];
@@ -40,8 +53,12 @@ angular.module('starter.services', [])
       window.localStorage.setItem("OfflineForms", JSON.stringify(forms));
     },
     getAll: function(code){
-      return window.localStorage.getItem("OfflineForms");
-    }
+      return forms;
+    },
+    remove: function(form) {
+      forms.splice(forms.indexOf(form), 1);
+      window.localStorage.setItem("OfflineForms", JSON.stringify(forms));
+    },
   };
 })
 

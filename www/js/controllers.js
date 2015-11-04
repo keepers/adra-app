@@ -15,67 +15,74 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('DashCtrl', function($scope) {
+.controller('DashCtrl', function($scope, $timeout, Loading, OfflineForms, Api) {
+
+  $scope.offlineForms = OfflineForms.getAll();
+
+  var sendForm = function(form){
+    Api.postBeneficiary(form)
+    .then(function(data){
+      console.log(data);
+      OfflineForms.remove(form);
+    })
+    .catch(function(e){
+      console.log(e);
+    });
+  };
+
+  $scope.sendAll = function(){
+    Loading.show('Enviando todos');
+    for (var i = $scope.offlineForms.length - 1; i >= 0; i--) {
+      var form = $scope.offlineForms[i];
+      sendForm(form);
+      if(i === 0){
+        Loading.hide();
+      }
+    }
+
+  };
 
 })
 
 .controller('FormsCtrl', function($scope, Forms) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-
   $scope.forms = Forms.all();
-  $scope.remove = function(form) {
-    Forms.remove(form);
-  };
 })
 
-.controller('FormDetailCtrl', function($scope, $state, $stateParams, $ionicLoading, $timeout, OfflineForms, Forms, Api) {
+.controller('FormDetailCtrl', function($scope, $state, $stateParams, Loading, $timeout, OfflineForms, Forms, Api) {
 
   $scope.form = Forms.get($stateParams.formId);
+
   $scope.beneficiary = {
     gender: 'M',
     ticketNumber: 123
   };
 
-  var showLoading = function() {
-    $ionicLoading.show({
-      template: 'Subiendo información...'
-    });
-  };
-
-  var hideLoading = function(){
-    $ionicLoading.hide();
+  $scope.saveOffline = function(beneficiary){
+    OfflineForms.add(beneficiary);
+    Loading.show('Item guardado');
+    $timeout(function() {
+      Loading.hide();
+    }, 1500);
+    $state.go('tab.forms');
   };
 
   $scope.send = function(beneficiary){
 
-    showLoading();
+    Loading.show('Subiendo la información');
 
     Api.postBeneficiary(beneficiary)
     .then(function(data){
-
       console.log(data);
-      hideLoading();
+      Loading.hide();
       $state.go('tab.forms');
-
     })
     .catch(function(e){
-
       console.log(e);
       OfflineForms.add(beneficiary);
-      
-      $ionicLoading.show({
-        template: 'Ocurrió un error'
-      });
+      Loading.show('Ocurrió un error');
       $timeout(function() {
-        hideLoading();
+        Loading.hide();
       }, 1500);
-
     });
 
   };

@@ -1,20 +1,33 @@
-<ion-view view-title="Estado">
-  <ion-content class="padding">
-    <div class="list card">
-      <div class="item item-divider">Ultimas actualizaciones</div>
-      <div class="item item-body">
-        <div>
-         Bla bla bla <b>bla bla</b>
-        </div>
+<ion-view view-title="Pendientes">
+  <ion-content>
+
+    <div class="card" ng-show="offlineForms.length === 0">
+      <div class="item item-text-wrap">
+        No tenes items pendientes para enviar
       </div>
     </div>
-    <div class="list card">
-      <div class="item item-divider">Información</div>
-      <div class="item item-body">
-        <div>
-          Algo importante
+    
+    <div ng-show="offlineForms.length > 0">
+
+      <div class="list">
+
+        <div class="item item-divider">
+          Tenes {{offlineForms.length}} forms pendientes por enviar
         </div>
+
+        <a ng-repeat="form in offlineForms track by $index" class="item" href="#">
+          {{form.name.first}}
+        </a>
+
       </div>
+
+      <div class="padding">
+        <button type="button" ng-click="sendAll()" class="button icon-left ion-ios-cloud-upload-outline button-block button-positive">
+          Enviar Todos
+        </button>
+      </div>
+
     </div>
+
   </ion-content>
 </ion-view>
