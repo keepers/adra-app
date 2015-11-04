@@ -53,11 +53,11 @@
       <span ng-if="beneficiary.beneficiaries.female > 0">
         <label class="item item-input item-stacked-label">
           <span class="input-label">Madres embarazadas</span>
-          <input type="number" min="0" ng-model="beneficiary.beneficiaries.pregnant" placeholder="0">
+          <input type="number" min="0" max="{{beneficiary.beneficiaries.female}}" ng-model="beneficiary.beneficiaries.pregnant" placeholder="0">
         </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">Madres lactantes</span>
-          <input type="number" min="0" ng-model="beneficiary.beneficiaries.lactant" placeholder="0">
+          <input type="number" min="0" max="{{beneficiary.beneficiaries.female}}" ng-model="beneficiary.beneficiaries.lactant" placeholder="0">
         </label>
       </span>
       <label class="item item-input item-stacked-label">
