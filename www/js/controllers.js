@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('SignInCtrl', function($scope, $state, Forms, EmergencyCode) {
+.controller('SignInCtrl', function($scope, $state, $ionicPopup, Forms, EmergencyCode) {
 
   $scope.start = function(data){
     // $scope.data = {emergencyCode: '5636e2e3d587f3c81ea9875d'};
@@ -10,7 +10,10 @@ angular.module('starter.controllers', [])
       $state.go('tab.forms');
     }
     else{
-      alert('Ingrese \'demo\'');
+      var alertPopup = $ionicPopup.alert({
+         title: 'Ooops!',
+         template: 'Tenes que ingresar la palabra: demo'
+       });
     }
   };
 })
