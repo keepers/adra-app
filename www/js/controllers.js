@@ -83,10 +83,11 @@ angular.module('starter.controllers', [])
     .catch(function(e){
       console.log(e);
       OfflineForms.add(beneficiary);
-      Loading.show('Ocurrió un error');
+      Loading.show('Ocurrió un error, el item quedo guardado en pendientes');
       $timeout(function() {
         Loading.hide();
-      }, 1500);
+        $state.go('tab.forms');
+      }, 2000);
     });
 
   };
