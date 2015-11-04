@@ -33,7 +33,10 @@ angular.module('starter.controllers', [])
 .controller('FormDetailCtrl', function($scope, $state, $stateParams, $ionicLoading, $timeout, Forms, Api) {
 
   $scope.form = Forms.get($stateParams.formId);
-  $scope.beneficiary = {gender: 'M'};
+  $scope.beneficiary = {
+    gender: 'M',
+    ticketNumber: 123
+  };
 
   var showLoading = function() {
     $ionicLoading.show({
