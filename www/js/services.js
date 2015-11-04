@@ -30,6 +30,21 @@ angular.module('starter.services', [])
   };
 })
 
+.factory('OfflineForms', function() {
+
+  var forms = JSON.parse(window.localStorage.getItem("OfflineForms")) || [];
+
+  return {
+    add: function(form){
+      forms.push(form);
+      window.localStorage.setItem("OfflineForms", JSON.stringify(forms));
+    },
+    getAll: function(code){
+      return window.localStorage.getItem("OfflineForms");
+    }
+  };
+})
+
 .factory('Forms', function() {
   
   var forms = [{

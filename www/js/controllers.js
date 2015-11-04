@@ -34,7 +34,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('FormDetailCtrl', function($scope, $state, $stateParams, $ionicLoading, $timeout, Forms, Api) {
+.controller('FormDetailCtrl', function($scope, $state, $stateParams, $ionicLoading, $timeout, OfflineForms, Forms, Api) {
 
   $scope.form = Forms.get($stateParams.formId);
   $scope.beneficiary = {
@@ -58,18 +58,24 @@ angular.module('starter.controllers', [])
 
     Api.postBeneficiary(beneficiary)
     .then(function(data){
+
       console.log(data);
       hideLoading();
       $state.go('tab.forms');
+
     })
     .catch(function(e){
+
       console.log(e);
+      OfflineForms.add(beneficiary);
+      
       $ionicLoading.show({
         template: 'Ocurrió un error'
       });
       $timeout(function() {
         hideLoading();
       }, 1500);
+
     });
 
   };
