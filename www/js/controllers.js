@@ -57,8 +57,13 @@ angular.module('starter.controllers', [])
     })
     .catch(function(e){
       console.log(e);
-      hideLoading();
-      $state.go('tab.forms');
+      $ionicLoading.show({
+        template: 'Ocurrió un error'
+      });
+      $timeout(function() {
+        hideLoading();
+      }, 1500);
+      // $state.go('tab.forms');
     });
 
   };
