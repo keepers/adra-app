@@ -1,19 +1,14 @@
-<!--
-Create tabs with an icon and label, using the tabs-positive style.
-Each tab's child <ion-nav-view> directive will have its own
-navigation history that also transitions its views in and out.
--->
 <ion-tabs class="tabs-icon-top tabs-color-active-positive">
 
-  <ion-tab title="Formularios" icon-off="ion-ios-list-outline" icon-on="ion-ios-list" href="#/tab/forms">
+  <ion-tab title="Forms" icon-off="ion-ios-list-outline" icon-on="ion-ios-list" href="#/tab/forms">
     <ion-nav-view name="tab-forms"></ion-nav-view>
   </ion-tab>
 
-  <ion-tab title="Pendientes" badge-style="badge-positive" badge="offlineForms.length" ng-controller="DashCtrl" icon-off="ion-ios-box-outline" icon-on="ion-ios-box" href="#/tab/dash">
+  <ion-tab title="Pendings" badge-style="badge-positive" badge="offlineForms.length" ng-controller="DashCtrl" icon-off="ion-ios-box-outline" icon-on="ion-ios-box" href="#/tab/dash">
     <ion-nav-view name="tab-dash"></ion-nav-view>
   </ion-tab>
 
-  <ion-tab title="Ajustes" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/tab/account">
+  <ion-tab title="Settings" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/tab/account">
     <ion-nav-view name="tab-account"></ion-nav-view>
   </ion-tab>
 

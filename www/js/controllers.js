@@ -3,16 +3,15 @@ angular.module('starter.controllers', [])
 .controller('SignInCtrl', function($scope, $state, $ionicPopup, Forms, EmergencyCode) {
 
   $scope.start = function(data){
-    // $scope.data = {emergencyCode: '5636e2e3d587f3c81ea9875d'};
     if(data && (data.emergencyCode.toLowerCase() === 'demo')){
-      // EmergencyCode.setEmergencyCode(data.emergencyCode);
+      //For this prototype we use a hardcoded ID of an Emergency
       EmergencyCode.setEmergencyCode('5636e2e3d587f3c81ea9875d');
       $state.go('tab.forms');
     }
     else{
       var alertPopup = $ionicPopup.alert({
          title: 'Ooops!',
-         template: 'Tenes que ingresar la palabra: demo'
+         template: 'You have to enter "demo"'
        });
     }
   };
@@ -25,14 +24,12 @@ angular.module('starter.controllers', [])
   var sendForm = function(form, lastOne){
     Api.postBeneficiary(form)
     .then(function(data){
-      console.log(data);
       OfflineForms.remove(form);
       if(lastOne){
         Loading.hide();
       }
     })
     .catch(function(e){
-      console.log(e);
       if(lastOne){
         Loading.hide();
       }
@@ -40,7 +37,7 @@ angular.module('starter.controllers', [])
   };
 
   $scope.sendAll = function(){
-    Loading.show('Enviando todos');
+    Loading.show('Sending all the items');
     for (var i = $scope.offlineForms.length - 1; i >= 0; i--) {
       var form = $scope.offlineForms[i];
       var lastOne = i === 0;
@@ -66,7 +63,7 @@ angular.module('starter.controllers', [])
 
   $scope.saveOffline = function(beneficiary){
     OfflineForms.add(beneficiary);
-    Loading.show('Item guardado');
+    Loading.show('Item saved');
     $timeout(function() {
       Loading.hide();
     }, 1500);
@@ -75,18 +72,16 @@ angular.module('starter.controllers', [])
 
   $scope.send = function(beneficiary){
 
-    Loading.show('Subiendo la información');
+    Loading.show('Uploading information');
 
     Api.postBeneficiary(beneficiary)
     .then(function(data){
-      console.log(data);
       Loading.hide();
       $state.go('tab.forms');
     })
     .catch(function(e){
-      console.log(e);
       OfflineForms.add(beneficiary);
-      Loading.show('Ocurrió un error, el item quedo guardado en pendientes');
+      Loading.show('A problem ocurred. The item was saved in pendings.');
       $timeout(function() {
         Loading.hide();
         $state.go('tab.forms');
@@ -103,8 +98,8 @@ angular.module('starter.controllers', [])
   };
   $scope.removeAll = function(){
     var confirmPopup = $ionicPopup.confirm({
-      title: 'Confirmar',
-      template: 'Estas seguro que queres borrar todos los items locales?'
+      title: 'Confirm',
+      template: 'Are you sure?'
     });
     confirmPopup.then(function(res) {
      if(res) {

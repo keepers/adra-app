@@ -1,9 +1,9 @@
-<ion-view view-title="Pendientes">
+<ion-view view-title="Pendings">
   <ion-content>
 
     <div class="card" ng-show="offlineForms.length === 0">
       <div class="item item-text-wrap">
-        No tenes items pendientes para enviar
+        No pending items
       </div>
     </div>
     
@@ -12,7 +12,7 @@
       <div class="list">
 
         <div class="item item-divider">
-          Tenes {{offlineForms.length}} items pendientes por enviar
+          You have {{offlineForms.length}} pending items to send
         </div>
 
         <a ng-repeat="form in offlineForms track by $index" class="item" href="#">
@@ -23,7 +23,7 @@
 
       <div class="padding">
         <button type="button" ng-click="sendAll()" class="button icon-left ion-ios-cloud-upload-outline button-block button-positive">
-          Enviar Todos
+          Send All
         </button>
       </div>
 

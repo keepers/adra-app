@@ -70,8 +70,8 @@ angular.module('starter.services', [])
   
   var forms = [{
     id: 0,
-    name: 'Distribución',
-    lastText: 'Descripción',
+    name: 'Distribution',
+    lastText: 'Description',
     icon: 'img/doc.png'
   }];
 
