@@ -67,7 +67,7 @@ angular.module('adra.controllers', [])
     })
     .catch(function(e){
       OfflineForms.add(beneficiary);
-      Loading.show('A problem ocurred. The item was saved in pendings.');
+      Loading.show('A problem ocurred. The item was saved in pending.');
       $timeout(function() {
         Loading.hide();
         $state.go('tab.forms');
