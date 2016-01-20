@@ -1,4 +1,4 @@
-angular.module('starter.services', [])
+angular.module('adra.services', [])
 
 .factory('Api', function($http, Forms, EmergencyCode) {
 

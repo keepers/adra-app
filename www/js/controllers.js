@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('adra.controllers', [])
 
 .controller('SignInCtrl', function($scope, $state, $ionicPopup, Forms, EmergencyCode) {
 
