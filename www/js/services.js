@@ -70,7 +70,7 @@ angular.module('adra.services', [])
   
   var forms = [{
     id: 0,
-    name: 'Distribution',
+    name: 'Form 1',
     lastText: 'Description',
     icon: 'img/doc.png'
   }];
