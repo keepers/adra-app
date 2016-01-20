@@ -1,23 +1,9 @@
 angular.module('adra.controllers', [])
 
-.controller('SignInCtrl', function($scope, $state, $ionicPopup, Forms, EmergencyCode) {
+.controller('DashCtrl', function($scope, $timeout, Loading, OfflineForms, EmergencyCode, Api) {
 
-  $scope.start = function(data){
-    if(data && (data.emergencyCode.toLowerCase() === 'demo')){
-      //For this prototype we use a hardcoded ID of an Emergency
-      EmergencyCode.setEmergencyCode('5636e2e3d587f3c81ea9875d');
-      $state.go('tab.forms');
-    }
-    else{
-      var alertPopup = $ionicPopup.alert({
-         title: 'Ooops!',
-         template: 'You have to enter "demo"'
-       });
-    }
-  };
-})
-
-.controller('DashCtrl', function($scope, $timeout, Loading, OfflineForms, Api) {
+  //For this prototype we use a hardcoded ID of an Emergency
+  EmergencyCode.setEmergencyCode('5636e2e3d587f3c81ea9875d');
 
   $scope.offlineForms = OfflineForms.getAll();
 

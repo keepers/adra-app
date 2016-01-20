@@ -24,13 +24,6 @@ angular.module('adra', ['ionic', 'adra.controllers', 'adra.services'])
   // Each state's controller can be found in controllers.js
   $stateProvider
 
-  .state('signin', {
-    url: '/sign-in',
-    templateUrl: 'templates/sign-in.html',
-    controller: 'SignInCtrl'
-  })
-
-
   .state('tab', {
     url: '/tab',
     abstract: true,
@@ -76,6 +69,6 @@ angular.module('adra', ['ionic', 'adra.controllers', 'adra.services'])
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/sign-in');
+  $urlRouterProvider.otherwise('/tab/forms');
 
 });
