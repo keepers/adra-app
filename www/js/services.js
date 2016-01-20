@@ -2,12 +2,12 @@ angular.module('adra.services', [])
 
 .factory('Api', function($http, Forms, EmergencyCode) {
 
-  // var API_PATH      = 'http://localhost:9090';
-  var API_PATH      = 'https://adra-api.herokuapp.com';
+  // @TODO: Create gulp task to manage this
+  // var API_PATH      = 'https://adra-api.herokuapp.com';
+  var API_PATH      = 'http://localhost:9090';
+
   var emergencyCode = EmergencyCode.getEmergencyCode();
   
-  // @TODO: Check connection
-
   return {
     postBeneficiary: function(beneficiary){
       beneficiary.emergencyCode = emergencyCode;
