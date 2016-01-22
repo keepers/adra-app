@@ -1,5 +1,4 @@
-# adra-app
-
+# ADRA App
 
 This app was made for [ADRA Argentina](http://www.adraargentina.org/) to collect real time data about hard hit areas and improve decision-making.
 
