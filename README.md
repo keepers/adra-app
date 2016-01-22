@@ -1,5 +1,7 @@
 # ADRA App
 
+![](readme-image.png "Screenshot")
+
 This app was made for [ADRA Argentina](http://www.adraargentina.org/) to collect real time data about hard hit areas and improve decision-making.
 
 At the time of an emergency, information is a really valuable resource for ADRA. Time, money and human resources were spent by doing manual surveys, shipping these to ADRA office, doing data entry to get all the information in excel and finally analyze it.
